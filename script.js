@@ -1,4 +1,4 @@
-const API_KEY = 'RXKSQZMSIAKW'; // <-- Replace with your real API key here
+const API_KEY = 'RXKSQZMSIAKW';
 
 const cities = [
   "Europe/London",
@@ -21,7 +21,7 @@ cities.forEach(zone => {
   toZone.appendChild(new Option(zone, zone));
 });
 
-// Fetch time data from TimeZoneDB API
+
 async function fetchTime(zone) {
   const url = `https://api.timezonedb.com/v2.1/get-time-zone?key=${API_KEY}&format=json&by=zone&zone=${zone}`;
   const res = await fetch(url);
@@ -31,7 +31,7 @@ async function fetchTime(zone) {
   return data;
 }
 
-// Update the world clocks display
+
 async function updateClocks() {
   clocksContainer.innerHTML = '';
   for (const zone of cities) {
@@ -56,20 +56,20 @@ async function updateClocks() {
   }
 }
 
-// Helper: parse input datetime as if it's in FROM timezone (using gmtOffset)
+
 function parseDateTimeInZone(dateTimeStr, gmtOffsetSeconds) {
   const [datePart, timePart] = dateTimeStr.split('T');
   const [year, month, day] = datePart.split('-').map(Number);
   const [hour, minute] = timePart.split(':').map(Number);
 
-  // Create a UTC timestamp for the given date & time ignoring local browser timezone
+
   const utcDate = Date.UTC(year, month - 1, day, hour, minute);
 
-  // Subtract the FROM timezone offset to get true UTC time
+
   return new Date(utcDate - gmtOffsetSeconds * 1000);
 }
 
-// Convert time between time zones using offsets
+
 async function convertTime() {
   const fromZoneValue = fromZone.value;
   const toZoneValue = toZone.value;
@@ -86,20 +86,20 @@ async function convertTime() {
       fetchTime(toZoneValue)
     ]);
 
-    const fromOffset = fromData.gmtOffset; // in seconds
-const toOffset = toData.gmtOffset;     // in seconds
+    const fromOffset = fromData.gmtOffset; 
+const toOffset = toData.gmtOffset;     
 
-// Parse input datetime as local time (browser)
+
 const inputDate = new Date(fromDateTimeString);
 
-// Calculate offset difference in milliseconds
+
 const offsetDiffMs = (toOffset - fromOffset) * 1000;
 
-// Adjust input date by offset difference
+
 const convertedDate = new Date(inputDate.getTime() + offsetDiffMs);
 
 
-    // Format nicely
+   
     const formattedResult = convertedDate.toLocaleString('en-US', {
         hour12: false
 });
@@ -112,6 +112,6 @@ const convertedDate = new Date(inputDate.getTime() + offsetDiffMs);
   }
 }
 
-// Setup event listener once
+
 convertBtn.addEventListener('click', convertTime);
 
