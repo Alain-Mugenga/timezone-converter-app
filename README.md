@@ -1,8 +1,8 @@
-\# 🌍 Timezone Converter \& World Clock App
+Timezone Converter \& World Clock App
 
 
 
-A lightweight web application that lets users convert time across different time zones using the \[TimeZoneDB API](https://timezonedb.com/api).
+A lightweight web application that lets users convert time across different time zones using the [TimeZoneDB API](https://timezonedb.com/api).
 
 
 
@@ -10,15 +10,14 @@ A lightweight web application that lets users convert time across different time
 
 
 
-\## 📦 Docker Image Details
+Docker Image Details
 
 
 
-\- \*\*Docker Hub Repo\*\*: \[https://hub.docker.com/r/alainmugenga1/timezone-app](https://hub.docker.com/r/alainmugenga1/timezone-app)
+Docker Hub Repo: [https://hub.docker.com/r/alainmugenga1/timezone-app](https://hub.docker.com/r/alainmugenga1/timezone-app)
 
-\- \*\*Image Name\*\*: `alainmugenga1/timezone-app`
-
-\- \*\*Tags Used\*\*:
+Image Name: `alainmugenga1/timezone-app`
+Tags Used:
 
 &nbsp; - `v1` — initial version
 
@@ -26,11 +25,11 @@ A lightweight web application that lets users convert time across different time
 
 
 
----
 
 
 
-\## 🛠️ Build Instructions (Locally)
+
+Build Instructions (Locally)
 
 
 
@@ -40,23 +39,23 @@ If you'd like to build the image locally:
 
 
 
-\# From the project root
+From the project root
 
 docker build -t alainmugenga1/timezone-app:v1 .
 
-🚀 Run Instructions
+ Run Instructions
 
 Web Servers (Web01 \& Web02)
 
 Use the following command on each web server:
 
 
-
+For web-01
 
 
 docker run -d --name web-01 --restart unless-stopped -p 8080:8080 alainmugenga1/timezone-app:v1
 
-\# or for Web02
+For Web-02
 
 docker run -d --name web-02 --restart unless-stopped -p 8080:8080 alainmugenga1/timezone-app:v1
 
@@ -71,7 +70,7 @@ You can verify they are running:
 
 docker ps
 
-⚖️ Load Balancer (HAProxy) Configuration
+Load Balancer (HAProxy) Configuration
 
 HAProxy Config Snippet (haproxy.cfg):
 
@@ -105,7 +104,7 @@ docker exec -it lb-01 sh -c 'haproxy -sf $(pidof haproxy) -f /etc/haproxy/haprox
 
 
 
-✅ Testing \& Verification
+Testing \& Verification
 
 Load Balancing Test:
 
@@ -119,7 +118,7 @@ You should observe different responses (e.g., container ID or hostname) alternat
 
 
 
-🔌 API Used
+API Used
 
 TimeZoneDB API
 
@@ -133,7 +132,7 @@ Used for fetching timezone data and conversions.
 
 
 
-⚠️ Challenges Faced
+Challenges Faced
 
 Networking Setup: Ensuring the containers could communicate with HAProxy internally required correct inspection of IPs using docker inspect.
 
@@ -147,7 +146,7 @@ HAProxy Container: Needed to correctly reload config inside the container withou
 
 
 
-🙏 Acknowledgments
+Acknowledgments
 
 Special thanks to the TimeZoneDB team for providing a reliable API.
 
@@ -157,7 +156,7 @@ Docker and HAProxy communities for open documentation and support.
 
 
 
-👨‍💻 Author
+Author
 
 Alain Mugenga
 
