@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Time Zone Converter & World Clock</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Time Zone Converter & World Clock</h1>
+
+    <section class="clock-section">
+      <h2>World Clocks</h2>
+      <div id="clocks" class="clock-list"></div>
+    </section>
+
+    <section class="converter-section">
+      <h2>Time Zone Converter</h2>
+      <div class="converter">
+        <label for="from-zone">From:</label>
+        <select id="from-zone"></select>
+
+        <label for="from-time">Date & Time:</label>
+        <input type="datetime-local" id="from-time" />
+
+        <label for="to-zone">To:</label>
+        <select id="to-zone"></select>
+
+        <button id="convert-btn">Convert</button>
+
+        <div id="converted-result"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

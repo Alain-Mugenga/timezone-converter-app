@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  web-01:
+    image: alainmugenga1/timezone-app:v1
+    container_name: web-01
+    expose:
+      - "8080"
+    networks:
+      - app-network
+
+  web-02:
+    image: alainmugenga1/timezone-app:v1
+    container_name: web-02
+    expose:
+      - "8080"
+    networks:
+      - app-network
+
+  lb-01:
+    image: haproxy:latest
+    container_name: lb-01
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - web-01
+      - web-02
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
